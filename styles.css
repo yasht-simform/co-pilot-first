@@ -2,25 +2,81 @@
   box-sizing: border-box;
 }
 
+:root {
+  --bg: #f4f6fb;
+  --text: #1f2937;
+  --surface: #ffffff;
+  --surface-shadow: rgba(15, 23, 42, 0.08);
+  --input-border: #d1d5db;
+  --item-border: #e5e7eb;
+  --item-bg: #fafafa;
+  --primary: #2563eb;
+  --primary-hover: #1d4ed8;
+  --danger: #dc2626;
+  --danger-hover: #b91c1c;
+}
+
+body[data-theme="dark"] {
+  --bg: #0f172a;
+  --text: #e5e7eb;
+  --surface: #111827;
+  --surface-shadow: rgba(2, 6, 23, 0.45);
+  --input-border: #374151;
+  --item-border: #374151;
+  --item-bg: #1f2937;
+  --primary: #3b82f6;
+  --primary-hover: #60a5fa;
+  --danger: #ef4444;
+  --danger-hover: #f87171;
+}
+
 body {
   margin: 0;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  background: #f4f6fb;
-  color: #1f2937;
+  background: var(--bg);
+  color: var(--text);
 }
 
 .app {
   width: min(92vw, 520px);
   margin: 48px auto;
   padding: 24px;
-  background: #ffffff;
+  background: var(--surface);
   border-radius: 12px;
-  box-shadow: 0 12px 28px rgba(15, 23, 42, 0.08);
+  box-shadow: 0 12px 28px var(--surface-shadow);
+}
+
+.app-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 12px;
 }
 
 h1 {
   margin-top: 0;
-  text-align: center;
+  margin-bottom: 0;
+}
+
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.9rem;
+  user-select: none;
+  cursor: pointer;
+}
+
+.theme-toggle input {
+  width: 40px;
+  height: 22px;
+  accent-color: var(--primary);
+}
+
+.theme-toggle input:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
 }
 
 .todo-form {
@@ -32,22 +88,24 @@ h1 {
 .todo-form input {
   flex: 1;
   padding: 10px 12px;
-  border: 1px solid #d1d5db;
+  border: 1px solid var(--input-border);
   border-radius: 8px;
   font-size: 1rem;
+  background: var(--surface);
+  color: var(--text);
 }
 
 .todo-form button {
   padding: 10px 14px;
   border: none;
   border-radius: 8px;
-  background: #2563eb;
+  background: var(--primary);
   color: #fff;
   cursor: pointer;
 }
 
 .todo-form button:hover {
-  background: #1d4ed8;
+  background: var(--primary-hover);
 }
 
 .todo-list {
@@ -64,9 +122,9 @@ h1 {
   justify-content: space-between;
   gap: 10px;
   padding: 10px 12px;
-  border: 1px solid #e5e7eb;
+  border: 1px solid var(--item-border);
   border-radius: 8px;
-  background: #fafafa;
+  background: var(--item-bg);
 }
 
 .todo-text {
@@ -83,11 +141,18 @@ h1 {
   border: none;
   border-radius: 6px;
   padding: 6px 10px;
-  background: #dc2626;
+  background: var(--danger);
   color: white;
   cursor: pointer;
 }
 
 .delete-btn:hover {
-  background: #b91c1c;
+  background: var(--danger-hover);
+}
+
+@media (max-width: 520px) {
+  .app-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
 }
